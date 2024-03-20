@@ -30,7 +30,23 @@ In diesem Kapitel legen wir den Grundstein für unsere SaaS-Anwendung. Unser ers
 
 ## Vorbereitungen
 
+### Verzeichnis Application
+Wir erstellen im Verzeichnis das Unterverzeichnis **Application**.
+Und im neuen Verzeichnis **Application** folgende Unterverzeichnisse:
+- Homepage
+- Auth
+- Admin
+- Emplyoyee
+- Customer
+- Components
+- Shared
+
+### Wiederverwendbare Vue-Komponenten
+Das Erstellen wiederverwendbarer Vue-Komponenten ist ein wichtiger Bestandteil der effizienten Entwicklung mit Vue.js, insbesondere wenn du TailwindCSS für das Styling verwendest. Wiederverwendbare Komponenten können helfen, Code-Duplikation zu reduzieren und die Wartbarkeit deiner Anwendung zu verbessern. 
+
 ### deploy.sh
+
+Für die Aktualisierung des Programmcodes erstelle ich eine sh-Datei deploy.sh
 
 ```
 #!/bin/sh -l
@@ -49,5 +65,7 @@ den Code nach GitHub hochladen.
 
 ## Homepage
 
+### Layout.vue
+Wir erstellen im Verzeichnis js/Application/Homepage zunächst das Unterverzeichnis Shared und hier die Vue-Datei Layout.vue.
 
 
