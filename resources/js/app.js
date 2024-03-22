@@ -6,6 +6,9 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
+// use the plugin v-tippy (https://thecodewarrior.github.io/Tippy.vue/getting-started.html)
+import { TippyPlugin } from "tippy.vue";
+
 const appName = import.meta.env.VITE_APP_NAME || 'Starter Eleven';
 
 createInertiaApp({
@@ -15,6 +18,9 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(TippyPlugin, {
+                tippyDefaults: {}, // convenience to set tippy.js default props
+            })
             .mount(el);
     },
     progress: {

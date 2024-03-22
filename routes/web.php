@@ -19,11 +19,17 @@ Route::get('/home/pricing', [HomeController::class, 'home_pricing'])->name('home
 Route::get('/home/imprint', [HomeController::class, 'home_imprint'])->name('home.imprint');
 // Privacy
 Route::get('/home/privacy', [HomeController::class, 'home_privacy'])->name('home.privacy');
+// Terms
+Route::get('/home/terms', [HomeController::class, 'home_terms'])->name('home.terms');
 // Liste der Blogartikel
 Route::get('/blogs', [HomeController::class, 'home_blog_index'])->name('home.blog.index')->middleware('remember');
 // Display Blogartikel
 Route::get('/blogs/show/{slug}', [HomeController::class, 'home_blog_show'])->name('home.blog.show');
 
+
+// ------------------
+// Authentifizierzung
+// ------------------
 
 // ===============================
 // Routen für angemeldete Anwender

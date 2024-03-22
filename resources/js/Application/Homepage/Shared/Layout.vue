@@ -117,6 +117,11 @@
                                 name="Preise"
                             ></link-header>
 
+                            <link-header
+                                :route-name="route('home.blog.index')"
+                                name="Blog"
+                            ></link-header>
+
                             <template v-if="!$page.props.userdata.user_id">
                                 <link-header
                                     :route-name="route('login')"
@@ -177,6 +182,22 @@
                                 <ul role="list" class="mt-6 space-y-4">
                                     <li>
                                         <link-footer
+                                            name="Get Started"
+                                            :route-name="
+                                                route('home.get_started')
+                                            "
+                                        ></link-footer>
+                                    </li>
+                                    <li>
+                                        <link-footer
+                                            name="Preise"
+                                            :route-name="
+                                                route('home.pricing')
+                                            "
+                                        ></link-footer>
+                                    </li>
+                                    <li>
+                                        <link-footer
                                             name="Blog"
                                             :route-name="
                                                 route('home.blog.index')
@@ -198,6 +219,31 @@
                                         ></link-footer>
                                     </li>
 
+                                </ul>
+                            </div>
+                            <div class="text-center md:text-left">
+                                <h3
+                                    class="text-sm font-semibold leading-6 px-2"
+                                >
+                                    <span> Authentifizierung </span>
+                                </h3>
+                                <ul role="list" class="mt-6 space-y-4">
+                                    <li>
+                                        <link-footer
+                                            name="Login"
+                                            :route-name="
+                                                route('login')
+                                            "
+                                        ></link-footer>
+                                    </li>
+                                    <li>
+                                        <link-footer
+                                            name="Registrierung"
+                                            :route-name="
+                                                route('register')
+                                            "
+                                        ></link-footer>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
