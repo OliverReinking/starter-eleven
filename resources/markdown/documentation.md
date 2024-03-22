@@ -39,6 +39,12 @@ Und im neuen Verzeichnis **Application** folgende Unterverzeichnisse:
 - Emplyoyee
 - Customer
 - Components
+  - Content
+  - Form
+  - Icons
+    - SocialMedia
+  - Lists
+  - Logo
 - Shared
 
 ### Wiederverwendbare Vue-Komponenten
@@ -66,6 +72,49 @@ den Code nach GitHub hochladen.
 ## Homepage
 
 ### Layout.vue
-Wir erstellen im Verzeichnis js/Application/Homepage zunächst das Unterverzeichnis Shared und hier die Vue-Datei Layout.vue.
+- Application/Homepage/Shared  
 
+Layout.vue enthält den Rahmen für jede Seite unserer Homepage.
 
+#### MetaHeader.vue
+- Application/Homepage/Shared  
+
+#### Toast.vue
+- Application/Components/Content
+
+#### Logo.vue
+- Application/Components/Logo
+
+#### Favicon.vue
+- Application/Components/Logo
+
+#### BrandHeader.vue
+- Application/Shared
+
+#### BrandFooter.vue
+- Application/Shared
+
+#### LinkHeader.vue
+- Application/Shared
+
+#### LinkFooter.vue
+- Application/Shared
+
+### ButtonChangeMode.vue
+- Application/Components
+
+#### Icons
+- Application/Components/Icons
+    - Close.vue
+    - Menu.vue
+    - Night.vue
+    - Sun.vue
+
+#### SocialMedia-Icons
+- Application/Components/Icons/SocialMedia
+  - Facebook.vue
+  - LinkedIn.vue
+  - Youtube.vue
+
+#### Home
+- Application/Homepage
