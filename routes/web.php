@@ -1,24 +1,44 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ApplicationController;
+
+// --------
+// Homepage
+// --------
+// Startseite
+Route::get('/', [HomeController::class, 'home_index'])->name('home.index');
+// Get Started
+Route::get('/home/get_started', [HomeController::class, 'home_get_started'])->name('home.get_started');
+// Pricing
+Route::get('/home/pricing', [HomeController::class, 'home_pricing'])->name('home.pricing');
+// Imprint
+Route::get('/home/imprint', [HomeController::class, 'home_imprint'])->name('home.imprint');
+// Privacy
+Route::get('/home/privacy', [HomeController::class, 'home_privacy'])->name('home.privacy');
+// Liste der Blogartikel
+Route::get('/blogs', [HomeController::class, 'home_blog_index'])->name('home.blog.index')->middleware('remember');
+// Display Blogartikel
+Route::get('/blogs/show/{slug}', [HomeController::class, 'home_blog_show'])->name('home.blog.show');
+
+
+// ===============================
+// Routen für angemeldete Anwender
+// ===============================
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // =================
+    // APPLICATIONSWITCH
+    // =================
+    Route::get('/applicationswitch', [ApplicationController::class, 'index'])->name('applicationswitch');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+
+// --------------
+// Fallback-Route
+// --------------
+Route::fallback(function () {
+    return Inertia::render('Homepage/NoPageFound');
 });

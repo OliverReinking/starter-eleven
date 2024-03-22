@@ -106,6 +106,8 @@ Layout.vue enthält den Rahmen für jede Seite unserer Homepage.
 #### Icons
 - Application/Components/Icons
     - Close.vue
+    - Done.vue
+    - Exclamation.vue
     - Menu.vue
     - Night.vue
     - Sun.vue
@@ -114,7 +116,27 @@ Layout.vue enthält den Rahmen für jede Seite unserer Homepage.
 - Application/Components/Icons/SocialMedia
   - Facebook.vue
   - LinkedIn.vue
-  - Youtube.vue
+  - Youtube.vue 
 
 #### Home
 - Application/Homepage
+
+#### HomeController
+```
+php artisan make:controller HomeController
+```
+
+#### ApplicationController
+```
+php artisan make:controller ApplicationController
+```
+
+
+------
+
+Noch zu tun!
+
+### HandleInertiaRequests.php
+
+### Vor- und Nachname in users
+

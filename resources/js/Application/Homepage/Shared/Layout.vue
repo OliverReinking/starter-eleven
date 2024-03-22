@@ -50,6 +50,229 @@
             <meta head-key="og:type" property="og:type" content="website" />
         </template>
     </meta-header>
+
+    <main :class="mode" id="app-layout-start">
+        <section
+            class="relative bg-layout-sun-50 text-layout-sun-900 dark:bg-layout-night-50 dark:text-layout-night-900 transition-colors duration-1000"
+        >
+            <!-- Header -->
+            <nav
+                class="fixed top-0 left-0 right-0 z-50 bg-layout-sun-50 text-layout-sun-900 dark:bg-layout-night-50 dark:text-layout-night-900 border-b border-layout-sun-200 dark:border-layout-night-200"
+            >
+                <div
+                    class="container mx-auto max-w-6xl p-6 lg:flex lg:items-center lg:justify-between"
+                >
+                    <div class="flex items-center justify-between">
+                        <brand-header
+                            :route-name="route('home.index')"
+                            :brand_1="$page.props.applications.brand_name_1"
+                            :brand_2="$page.props.applications.brand_name_2"
+                            app-name="Ein Template von Oliver Reinking."
+                        ></brand-header>
+
+                        <!-- Mobile menu button -->
+                        <div class="flex lg:hidden">
+                            <button
+                                v-on:click="toggleNavbar()"
+                                type="button"
+                                class="focus:outline-none text-primary-sun-1000 hover:text-primary-sun-800 focus:text-primary-sun-800 dark:text-primary-night-1000 dark:hover:text-primary-night-800 dark:focus:text-primary-night-800"
+                                aria-label="toggle menu"
+                            >
+                                <icon-menu
+                                    class="w-6 h-6"
+                                    v-if="!isOpen"
+                                ></icon-menu>
+                                <icon-close
+                                    class="w-6 h-6"
+                                    v-if="isOpen"
+                                ></icon-close>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+                    <div
+                        :class="[
+                            isOpen
+                                ? 'translate-x-0 opacity-100 '
+                                : 'opacity-0 -translate-x-full',
+                        ]"
+                        class="absolute inset-x-0 mt-6 w-full px-6 py-4 shadow-md transition-all duration-300 ease-in-out bg-primary-sun-200 dark:bg-primary-night-200 lg:relative lg:top-0 lg:mt-0 lg:flex lg:w-auto lg:translate-x-0 lg:items-center lg:bg-transparent lg:p-0 lg:opacity-100 lg:shadow-none lg:dark:bg-transparent"
+                    >
+                        <div
+                            class="flex flex-col items-center space-y-4 lg:mt-0 lg:flex-row lg:space-y-0 lg:space-x-8"
+                        >
+                            <link-header
+                                :route-name="route('home.index')"
+                                name="Home"
+                            ></link-header>
+
+                            <link-header
+                                :route-name="route('home.get_started')"
+                                name="Get Started"
+                            ></link-header>
+
+                            <link-header
+                                :route-name="route('home.pricing')"
+                                name="Preise"
+                            ></link-header>
+
+                            <template v-if="!$page.props.userdata.user_id">
+                                <link-header
+                                    :route-name="route('login')"
+                                    name="Login"
+                                ></link-header>
+                                <link-header
+                                    :route-name="route('register')"
+                                    name="Registrieren"
+                                ></link-header>
+                            </template>
+
+                            <template v-if="$page.props.userdata.user_id">
+                                <link-header
+                                    :route-name="route('applicationswitch')"
+                                    name="Dashboard"
+                                ></link-header>
+                            </template>
+
+                            <button-change-mode
+                                :mode="mode"
+                                @changeMode="changeMode"
+                            ></button-change-mode>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Content -->
+            <div class="container mx-auto max-w-6xl min-h-screen py-32 px-2">
+                <!-- Toast -->
+                <toast></toast>
+
+                <!-- Slot für Content -->
+                <div class="mt-4">
+                    <slot></slot>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            class="bg-layout-sun-50 text-layout-sun-900 dark:bg-layout-night-50 dark:text-layout-night-900 border-t border-layout-sun-200 dark:border-layout-night-200"
+            aria-labelledby="footer-heading"
+        >
+            <div class="container mx-auto max-w-6xl">
+                <h2 id="footer-heading" class="sr-only">Footer</h2>
+                <div class="px-1 md:px-4 lg:px-8 pb-8 pt-8">
+                    <div
+                        class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 xl:col-span-2 xl:mt-0"
+                    >
+                        <div class="md:grid md:grid-cols-2 md:gap-4">
+                            <div class="text-center md:text-left">
+                                <h3
+                                    class="text-sm font-semibold leading-6 px-2"
+                                >
+                                    <span> Webseite </span>
+                                </h3>
+                                <ul role="list" class="mt-6 space-y-4">
+                                    <li>
+                                        <link-footer
+                                            name="Blog"
+                                            :route-name="
+                                                route('home.blog.index')
+                                            "
+                                        ></link-footer>
+                                    </li>
+                                    <li>
+                                        <link-footer
+                                            name="Impressum"
+                                            :route-name="route('home.imprint')"
+                                        ></link-footer>
+                                    </li>
+
+                                    <li>
+                                        <link-footer
+                                            name="Datenschutzerklärung"
+                                            name-en="Privacy"
+                                            :route-name="route('home.privacy')"
+                                        ></link-footer>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="pt-8 text-layout-sun-700 dark:text-layout-night-700"
+                    >
+                        <div
+                            class="flex flex-col items-center justify-between text-xs leading-5 gap-4"
+                        >
+                            <div
+                                class="w-full flex flex-col md:flex-row flex-1 items-center justify-between gap-4"
+                            >
+                                <div>
+                                    <brand-footer></brand-footer>
+                                </div>
+                                <div>
+                                    <link-footer>
+                                        <a
+                                            href="https://www.facebook.com"
+                                            target="_blank"
+                                            class="bg-layout-sun-0 dark:bg-layout-night-0"
+                                        >
+                                            <icon-facebook
+                                                class="flex-shrink-0 w-6 h-6"
+                                            ></icon-facebook>
+                                        </a>
+                                    </link-footer>
+                                    <link-footer>
+                                        <a
+                                            href="https://www.linkedin.com"
+                                            target="_blank"
+                                            class="bg-layout-sun-0 dark:bg-layout-night-0"
+                                        >
+                                            <icon-linked-in
+                                                class="flex-shrink-0 w-6 h-6"
+                                            ></icon-linked-in>
+                                        </a>
+                                    </link-footer>
+                                    <link-footer>
+                                        <a
+                                            href="https://youtube"
+                                            target="_blank"
+                                            class="bg-layout-sun-0 dark:bg-layout-night-0"
+                                        >
+                                            <icon-youtube
+                                                class="flex-shrink-0 w-6 h-6"
+                                            ></icon-youtube>
+                                        </a>
+                                    </link-footer>
+                                </div>
+                            </div>
+
+                            <div
+                                class="w-full flex flex-col md:flex-row flex-1 items-center justify-between gap-4"
+                            >
+                                <div class="text-xs leading-6">
+                                    {{ year }} Starter Eleven. Ein Template von Oliver Reinking.
+                                </div>
+
+                                <div class="text-xs leading-6">
+                                    <span
+                                    >
+                                        Version:
+                                    </span>
+                                    {{ $page.props.version.versionnr }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
 </template>
 <script>
 import { ref } from "vue";
@@ -101,8 +324,7 @@ export default {
         },
         headerDescription: {
             type: String,
-            default:
-                "Starter Eleven - Grundlage für SaaS-Anwendungen.",
+            default: "Starter Eleven - Ein Template von Oliver Reinking.",
         },
         headerUrl: {
             type: String,
@@ -128,7 +350,7 @@ export default {
         }
         //
         function changeMode(value) {
-            //console.log("changeMode: ", value);
+            console.log("changeMode: ", value);
             //
             mode.value = value;
             isOpen.value = false;
@@ -137,9 +359,9 @@ export default {
         }
         //
         function toggleNavbar() {
-            //console.log("toggleNavbar: ", this.isOpen);
+            console.log("toggleNavbar: ", this.isOpen);
             this.isOpen = !this.isOpen;
-            //console.log("toggleNavbar: ", this.isOpen);
+            console.log("toggleNavbar: ", this.isOpen);
         }
         //
         //

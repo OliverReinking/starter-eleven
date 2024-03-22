@@ -10,12 +10,12 @@
                 >
                     <span
                         v-if="brand_1"
-                        class="text-sun-primary-500 dark:text-night-primary-500"
+                        class="text-primary-sun-500 dark:text-primary-night-500"
                         >{{ brand_1 }}</span
                     >
                     <span
                         v-if="brand_2"
-                        class="text-sun-layout-500 dark:text-night-layout-500"
+                        class="text-layout-sun-500 dark:text-layout-night-500"
                         >{{ brand_2 }}</span
                     >
                 </div>
@@ -33,7 +33,7 @@
 <script>
 import { Link } from '@inertiajs/vue3'
 
-import Favicon from '@/Application/Logo/Favicon.vue'
+import Favicon from '@/Application/Components/Logo/Favicon.vue'
 
 export default {
     name: 'Shared_BrandHeader',
