@@ -33,11 +33,11 @@ In diesem Kapitel legen wir den Grundstein für unsere SaaS-Anwendung. Unser ers
 ### Verzeichnis Application
 Wir erstellen im Verzeichnis das Unterverzeichnis **Application**.
 Und im neuen Verzeichnis **Application** folgende Unterverzeichnisse:
-- Homepage
-- Auth
 - Admin
-- Emplyoyee
+- Auth
+  - Shared
 - Customer
+  - Shared
 - Components
   - Content
   - Form
@@ -45,6 +45,10 @@ Und im neuen Verzeichnis **Application** folgende Unterverzeichnisse:
     - SocialMedia
   - Lists
   - Logo
+- Employee
+  - Shared
+- Homepage
+  - Shared
 - Shared
 
 ### Wiederverwendbare Vue-Komponenten

@@ -119,7 +119,7 @@ export default {
                 case "error":
                     return "border border-red-200 dark:border-red-800";
                 default:
-                    return "border border-layout-sun-200 dark:border-layout-night-200"; // return a default class or an empty string
+                    return "border border-layout-sun-200 dark:border-layout-night-200";
             }
         },
     },

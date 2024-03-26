@@ -1,14 +1,13 @@
 <?php
 
-
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApplicationController;
 
-// --------
+// ========
 // Homepage
-// --------
+// ========
 // Startseite
 Route::get('/', [HomeController::class, 'home_index'])->name('home.index');
 // Get Started
@@ -26,11 +25,6 @@ Route::get('/blogs', [HomeController::class, 'home_blog_index'])->name('home.blo
 // Display Blogartikel
 Route::get('/blogs/show/{slug}', [HomeController::class, 'home_blog_show'])->name('home.blog.show');
 
-
-// ------------------
-// Authentifizierzung
-// ------------------
-
 // ===============================
 // Routen für angemeldete Anwender
 // ===============================
@@ -41,10 +35,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/applicationswitch', [ApplicationController::class, 'index'])->name('applicationswitch');
 });
 
-
-// --------------
+// ==============
 // Fallback-Route
-// --------------
+// ==============
 Route::fallback(function () {
     return Inertia::render('Homepage/NoPageFound');
 });
