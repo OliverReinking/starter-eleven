@@ -1,0 +1,15 @@
+@import 'button.css';
+@import 'footer.css';
+@import 'form.css';
+@import 'markdown.css';
+@import 'navigation.css';
+@import 'table.css';
+@import 'v_tippy.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
